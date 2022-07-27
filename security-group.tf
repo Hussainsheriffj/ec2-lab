@@ -28,6 +28,6 @@ resource "aws_security_group" "ansible_server" { #type and name of the resource
   }
 
   tags = {
-    Name = "allow_tls"
+    Name = "ansible-server"
   }
 }

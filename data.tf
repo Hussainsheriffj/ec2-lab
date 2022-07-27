@@ -14,13 +14,13 @@ data "aws_ami" "ubuntu" {
 data "aws_vpc" "talent-academy" {
     filter {
         name   = "tag:Name"
-        values = ["lab_vpc"]
+        values = ["lab-vpc"]
   } 
 }
 
 data "aws_subnet" "Public" {
     filter {
         name   = "tag:Name"
-        values = ["Public"]
+        values = ["public"]
   } 
 }

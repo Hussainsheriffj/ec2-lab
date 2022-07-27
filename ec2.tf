@@ -1,4 +1,5 @@
 resource "aws_instance" "ansible_server" {
+  count = 1
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.medium"
 
@@ -7,11 +8,12 @@ resource "aws_instance" "ansible_server" {
   subnet_id = data.aws_subnet.Public.id
 
   tags = {
-    Name = "Ansible Server"
+    Name = "Ansible Server ${count.index + 1}"
   }
 }
 
 resource "aws_eip" "ansible_server_ip" {
-  instance = aws_instance.ansible_server.id
+  count = 1
+  instance = aws_instance.ansible_server[count.index].id
   vpc      = true
 }
