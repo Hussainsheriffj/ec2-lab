@@ -1,5 +1,5 @@
 resource "aws_instance" "ansible_server" {
-  count = 1
+  count = var.num_instances
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3.medium"
 
@@ -13,7 +13,7 @@ resource "aws_instance" "ansible_server" {
 }
 
 resource "aws_eip" "ansible_server_ip" {
-  count = 1
+  count = var.num_instances
   instance = aws_instance.ansible_server[count.index].id
   vpc      = true
 }
